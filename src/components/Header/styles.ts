@@ -17,7 +17,9 @@ export const Container = styled.div<ContainerProps>`
     justify-content: space-between;
 
     nav {
-      a {
+      button {
+        border: 0;
+        background: inherit;
         color: #fff;
         text-decoration: none;
         font-size: 16px;
@@ -29,6 +31,15 @@ export const Container = styled.div<ContainerProps>`
 
         &:hover {
           opacity: 0.6;
+        }
+      }
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      li {
+        & + li {
+          margin-left: 30px;
         }
       }
     }

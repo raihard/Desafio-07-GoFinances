@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { Container } from './styles';
 
@@ -10,17 +10,36 @@ interface HeaderProps {
   size?: 'small' | 'large';
 }
 
-const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => (
-  <Container size={size}>
-    <header>
-      <img src={Logo} alt="GoFinances" />
-      <nav>
-        {
-          // Todo
-        }
-      </nav>
-    </header>
-  </Container>
-);
+const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => {
+  const history = useHistory();
+  const handleImport = useCallback(() => {
+    history.push('/import');
+  }, [history]);
 
+  const handleDashBoard = useCallback(() => {
+    history.push('/');
+  }, [history]);
+
+  return (
+    <Container size={size}>
+      <header>
+        <img src={Logo} alt="GoFinances" />
+        <nav>
+          <ul>
+            <li>
+              <button type="button" onClick={handleDashBoard}>
+                Listagem
+              </button>
+            </li>
+            <li>
+              <button type="button" onClick={handleImport}>
+                Importar
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </Container>
+  );
+};
 export default Header;
